@@ -63,6 +63,8 @@ var androidmk_allowlist []string = []string{
 	"bootable/deprecated-ota/updater/Android.mk",
 	"external/mesa/android/Android.mk",
 	"external/minigbm/gbm_mesa_driver/Android.mk",
+	"external/ffmpeg/Android.mk",
+	"external/ffmpeg_codec2/Android.mk",
 }
 
 func getAllLines(ctx Context, filename string) []string {
