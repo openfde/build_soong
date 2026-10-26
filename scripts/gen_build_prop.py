@@ -34,7 +34,7 @@ def get_build_variant(product_config):
     return "user"
 
 def get_build_flavor(product_config):
-  build_flavor = product_config["DeviceProduct"] + "-" + get_build_variant(product_config)
+  build_flavor = product_config["MockDeviceProduct"] + "-" + get_build_variant(product_config)
   if "address" in product_config.get("SanitizeDevice", []) and "_asan" not in build_flavor:
     build_flavor += "_asan"
   return build_flavor
@@ -72,10 +72,10 @@ def parse_args():
 
   if args.partition == "system":
     config['ProductBrand'] = config['SystemBrand']
-    config['DeviceName'] = config['SystemDevice']
+    config['MockDeviceName'] = config['SystemDevice']
     config['ProductManufacturer'] = config['SystemManufacturer']
     config['ProductModel'] = config['SystemModel']
-    config['DeviceProduct'] = config['SystemName']
+    config['MockDeviceProduct'] = config['SystemName']
 
   config["BuildFlavor"] = get_build_flavor(config)
   config["BuildKeys"] = get_build_keys(config)
@@ -102,7 +102,7 @@ def parse_args():
   # build_desc is human readable strings that describe this build. This has the same info as the
   # build fingerprint.
   # e.g. "aosp_cf_x86_64_phone-userdebug VanillaIceCream MAIN eng.20240319.143939 test-keys"
-  config["BuildDesc"] = f"{config['DeviceProduct']}-{config['BuildVariant']} " \
+  config["BuildDesc"] = f"{config['MockDeviceProduct']}-{config['BuildVariant']} " \
                         f"{config['Platform_version_name']} {config['BuildId']} " \
                         f"{config['BuildNumber']} {config['BuildVersionTags']}"
 
@@ -128,10 +128,10 @@ def generate_common_build_props(args):
   partition = args.partition
 
   print(f"ro.product.{partition}.brand={config['ProductBrand']}")
-  print(f"ro.product.{partition}.device={config['DeviceName']}")
+  print(f"ro.product.{partition}.device={config['MockDeviceName']}")
   print(f"ro.product.{partition}.manufacturer={config['ProductManufacturer']}")
   print(f"ro.product.{partition}.model={config['ProductModel']}")
-  print(f"ro.product.{partition}.name={config['DeviceProduct']}")
+  print(f"ro.product.{partition}.name={config['MockDeviceProduct']}")
 
   if partition != "system":
     if config["ProductModelForAttestation"]:
