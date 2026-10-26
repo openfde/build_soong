@@ -225,6 +225,8 @@ type ProductVariables struct {
 
 	DeviceName                            *string  `json:",omitempty" generic:"generic"`
 	DeviceProduct                         *string  `json:",omitempty" generic:"generic"`
+	MockDeviceName                        *string  `json:",omitempty"`
+	MockDeviceProduct                     *string  `json:",omitempty"`
 	DeviceArch                            *string  `json:",omitempty"`
 	DeviceArchVariant                     *string  `json:",omitempty"`
 	DeviceCpuVariant                      *string  `json:",omitempty"`
