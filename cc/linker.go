@@ -513,7 +513,9 @@ func CommonLinkerFlags(ctx android.ModuleContext, flags Flags, toolchain config.
 			flags.Global.LdFlags = append(flags.Global.LdFlags, "-Wl,-undefined,dynamic_lookup")
 		}
 	} else if !ctx.Darwin() && !ctx.Windows() {
-		flags.Global.LdFlags = append(flags.Global.LdFlags, "-Wl,--no-undefined")
+		if ctx.ModuleName() != "libglibc-adapter" {
+			flags.Global.LdFlags = append(flags.Global.LdFlags, "-Wl,--no-undefined")
+		}
 	}
 
 	ldFlags := toolchain.Ldflags(ctx)
