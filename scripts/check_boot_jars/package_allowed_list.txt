@@ -212,3 +212,7 @@ com\.google\.wear\..*
 # Packages used for display offload in Wear OS
 vendor\.google_clockwork\.displayoffload3
 vendor\.google_clockwork\.displayoffload3\..*
+vendor\.openfde\.window\.V1_0.*
+vendor\.openfde\.window\.V1_1.*
+vendor\.openfde\.window\.V1_2.*
+
